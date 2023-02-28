@@ -1,8 +1,5 @@
-
 import os
-import simpleaudio as sa
 from pydub import AudioSegment
-from pydub.playback import play
 
 # addVelocity
 #   => input: audio sample
@@ -24,8 +21,8 @@ from pydub.playback import play
 #AudioSegment.avconv = "/usr/local/Cellar/libav/12.3_7/bin/avconv.exe"
 
 source = "" # e.g. "/Useers/my_user/Samples/Roland_CR8000/"
-
 destination = "" # e.g. "/Users/my_user/PreppedSamples/Roland_CR80000/"
+prefix = ""
 
 print(os.listdir(source))
       
@@ -36,19 +33,16 @@ for filename in os.listdir(source):
     itr = 1
     ruler = []
     for itr in range(16):
-
-        vol = 11 - 1.9 * itr
-        sampleWithVol = sample + vol
-        ruler.append(sampleWithVol)
-        ruler.append(secondOfSilence)
+      vol = 11 - 1.9 * itr
+      sampleWithVol = sample + vol
+      ruler.append(sampleWithVol)
+      ruler.append(secondOfSilence)
         
     result = secondOfSilence
     for i in range(0, len(ruler)):
-
         result = result + ruler[i]
 
-
-    saveAs = "zz " + filename[0:len(filename) - 4] + " vel.wav"
+    saveAs = prefix + filename[0:len(filename) - 4] + " vel.wav"
     result.export(destination + saveAs, format = "wav")
     print(saveAs + " was exported!")
 
