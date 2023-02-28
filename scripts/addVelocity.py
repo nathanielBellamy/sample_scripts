@@ -23,8 +23,6 @@ from pydub.playback import play
 
 #AudioSegment.avconv = "/usr/local/Cellar/libav/12.3_7/bin/avconv.exe"
 
-#source = "/Users/etaote/Documents/00_Music/Samples/00_Drums/Roland_TR626/Roland TR-626/"
-
 source = "" # e.g. "/Useers/my_user/Samples/Roland_CR8000/"
 
 destination = "" # e.g. "/Users/my_user/PreppedSamples/Roland_CR80000/"
@@ -53,3 +51,4 @@ for filename in os.listdir(source):
     saveAs = "zz " + filename[0:len(filename) - 4] + " vel.wav"
     result.export(destination + saveAs, format = "wav")
     print(saveAs + " was exported!")
+
